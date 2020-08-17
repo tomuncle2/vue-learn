@@ -45,10 +45,17 @@
     console.log(petName);
     // 函数优化
     // 1.
-    let f1 = function fddd() {
-        console.log("function: fddd()");
+    let f1 = function f1() {
+        console.log("function: f1()");
     }
     // 2.
+    let f2 = () => {console.log("function: f2()");};
+    let f3 = () => {
+        console.log("function: f3()");
+        return 5;
+    };
+    let f4  = () => {return 5};
+    console.log(f4);
 </script>
 <body>
 1.变量
