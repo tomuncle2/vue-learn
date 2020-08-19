@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<script src="node_modules/vue/dist/vue.js">
 
+</script>
+<body>
+<!--view-->
+<div id = "app">
+    <h1>{{name}}超级棒！！</h1>
+</div>
 </body>
 </html>
 <script>
+ const vueApp = new Vue({
+     el:"#app",
+     data:{
+         // model(数据)
+         name:"迪哥x" }
+ });
+</script>
 
+<script>
+    function Person(name,age,job){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.sayName = function(){
+            alert(this.name);
+        };
+    }
+
+    var person = new Person()
 </script>
