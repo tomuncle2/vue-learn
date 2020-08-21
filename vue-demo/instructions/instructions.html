@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../node_modules/vue/dist/vue.js">
+
+</script>
+<body>
+// vue指令 v-
+<div id = "app">
+<h1>{{name}}超级棒！！ 赚到了 ${{sum()}} <br/>
+    // 直接输出内容
+    v-text: <span v-text="htmlcode"></span><br/>
+    // 会解析内容
+    v-html: <span v-html="htmlcode"></span>
+</h1>
+    <div>
+        表单元素
+    </div>
+</div>
+</body>
+
+<script>
+    // 插值表达式：花括号 差值闪烁
+  const vues = new Vue({
+      el:"#app",
+      data:{
+          name:"jack",
+          age:10,
+          num:0,
+          htmlcode : "hello <br/> everyone"
+      },
+      methods:{
+          sum() {
+              return this.num + 1;
+          }
+      },
+      // 钩子函数初始化
+      created() {
+          this.num = 1001;
+      }
+  });
+</script>
+</html>
