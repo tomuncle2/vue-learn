@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,31 +7,86 @@
 <script src="node_modules/vue/dist/vue.js">
 
 </script>
+
 <body>
 <!--view-->
 <div id = "app">
-    <h1>{{name}}超级棒！！</h1>
+    金额：<input type="text"  v-model="num"/> $<br/>
+<!--    增加：<button v-on:click="num++">+</button><br/>-->
+<!--    减少：<button v-on:click="num&#45;&#45;">-</button><br/>-->
+    增加：<button v-on:click="printNumAdd">+</button><br/>
+    减少：<button v-on:click="printNumSub">-</button><br/>
+    <h1>{{name}}超级棒！！ 赚到了 ${{num}} </h1>
 </div>
+
 </body>
 </html>
 <script>
  const vueApp = new Vue({
+     // 选择器 el即element，该vue实例要渲染的页面元素
      el:"#app",
+     // 声明了el和data后model和view就被自动关联起来了（双向）
      data:{
          // model(数据)
-         name:"迪哥x" }
+         name:"迪哥x",
+         num: 10,
+     },
+     methods:{
+         // 等价上面的v-on:click="num++">
+         printNumAdd() {
+             // this.num++; this代表当前实例
+             vueApp.$data.num++;
+             console.log(this);
+             alert(vueApp.$data.num);
+         },
+         // 等价上面的v-on:click="num--">
+         printNumSub() {
+             vueApp.$data.num--;
+             alert(vueApp.$data.num);
+         }
+     },
+     beforeCreate: function() {
+         //
+     }
+
+
+
  });
 </script>
 
 <script>
-    function Person(name,age,job){
+     function Person(name,age,job){
         this.name = name;
         this.age = age;
         this.job = job;
         this.sayName = function(){
             alert(this.name);
         };
+     }
+
+    var person = new Person({name:"jack"});
+
+     // const o1 = new Dog({
+     //     data:{
+     //         name:"fd",
+     //     },
+     //     methods: {
+     //         printNumAdd() {
+     //             vueApp.$data.num++;
+     //             alert(vueApp.$data);
+     //         }
+     //     }
+     // });
+     // o1.printNumAdd();
+     // 等价上面的v-on:click="num++">
+    function printNumAdd() {
+        vueApp.$data.num++;
+         alert(vueApp.$data);
     }
 
-    var person = new Person()
+     // 等价上面的v-on:click="num--">
+     function printNumSub() {
+         vueApp.$data.num--;
+         alert(vueApp.$data);
+     }
 </script>

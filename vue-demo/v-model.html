@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="node_modules/vue/dist/vue.js">
+
+</script>
+<body>
+<div id="app">
+    <input type="checkbox"  v-model="language" value="Java"/> java<br/>
+    <input type="checkbox"  v-model="language" value="php"/> php<br/>
+    <input type="checkbox"  v-model="language" value="c++"/> c++<br/>
+    <h1>
+        你选择了：{{language.join(',')}}
+    </h1>
+</div>
+</body>
+
+<script>
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+            language:[]
+        },
+        // 钩子函数初始化
+        created() {
+            this.num = 1001;
+        }
+    });
+</script>
+</html>
