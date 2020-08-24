@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--计算属性
+    **计算属性是基于它们的依赖（各个依赖的变量）进行缓存的**。
+    计算属性只有在它的相关依赖发生改变时才会重新求值
+    -->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../node_modules/vue/dist/vue.js">
+
+</script>
+<body>
+<div id="app">
+    <h1>
+        你的生日：{{getBirthday()}} <br/>
+        <!--可以如model数据一般使用计算属性值 不是函数-->
+        你的生日：{{computedBirthday}}
+    </h1>
+</div>
+</body>
+</html>
+<script>
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+            // 1572173440709
+            birthday : new Date().getTime()
+        },
+        // 钩子函数初始化
+        methods:{
+            getBirthday() {
+                let day = new Date(this.birthday);
+                return day.getFullYear() + "年" + day.getMonth() + "月" + day.getDay() +"日"
+            }
+        },
+        computed:{
+            <!--计算属性本质是一个方法，但是必须返回结果,结果最后变成vue对象的data数据 computedBirthday-->
+            computedBirthday() {
+                let day = new Date(this.birthday);
+                return day.getFullYear() + "年" + day.getMonth() + "月" + day.getDay() +"日"
+            }
+        }
+    });
+    console.log(vues);
+</script>

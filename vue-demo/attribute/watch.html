@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--监听器
+    watch可以让我们监控一个值的变化。从而做出相应的反应。
+    -->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../node_modules/vue/dist/vue.js">
+
+</script>
+<body>
+
+<div id="app">
+    <input type="text"  v-model="input" /> <br/>
+</div>
+</body>
+</html>
+<script>
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+            // 1572173440709
+            input : ""
+        },
+        // 监听
+        watch:{
+            // 要和监听参数名一致
+            input(newVal, oldVal){
+                console.log("新值：" + newVal, "旧值：" + oldVal);
+            }
+        }
+    });
+    console.log(vues);
+</script>

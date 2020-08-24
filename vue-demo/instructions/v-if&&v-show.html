@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    // if-else逻辑分支，可以用来做权限管理
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../node_modules/vue/dist/vue.js">
+
+</script>
+<body>
+<div id="app">
+    输入数据,展示范围:<input type="number" v-model="num"/><br>
+    <!--  // v-if   会控制DOM节点的存在与否。  语法v-if = boolean表达式-->
+    <br/>
+    <h1 v-if="num<8">
+        <8
+    </h1>
+    <h1 v-else="num>=8">
+        >=8
+    </h1><br/>
+
+    请输入年龄:<input type="number" v-model="age"/><br>
+    <h1 v-if="age<=18">
+        你是未成年人！！
+    </h1>
+
+    <h1 v-else-if="18<age<30">
+        你是青年人！！
+    </h1>
+
+    <h1 v-else-if="30<=age && age<50">
+        你是中年人！！
+    </h1>
+    <h1 v-else="age>=50">
+        你是老年人！！
+    </h1>
+    <!--  // v-show  等价css的 display:none 元素只是被隐藏了，还是存在于dom中-->
+    <br/>
+    <button @click="show=!show">切换</button>
+    <h1 v-show="show">
+        展示show
+    </h1><br/>
+
+    // 和 v-for的组合使用， v-for优先级高于v-if 先遍历，后过滤
+    <h1 v-for="(user,index) in users" v-if="user.gender =='女'">
+        {{index + 1}}. {{user.name}} - {{user.gender}} - {{user.age}}
+    </h1>
+</div>
+
+</body>+oi+---0  .
+</html>
+<script>
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+            num:0,
+            age:0,
+            // gfd
+            show:true,
+            users:[
+                {name:'柳岩', gender:'女', age: 21},
+                {name:'峰哥', gender:'男', age: 18},
+                {name:'范冰冰', gender:'女', age: 24},
+                {name:'刘亦菲', gender:'女', age: 18},
+                {name:'古力娜扎', gender:'女', age: 25}
+            ]
+        },
+        // 钩子函数初始化
+        created() {
+            this.num = 1001;
+        }
+    });
+</script>

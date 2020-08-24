@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <!--v-bind 改变样式属性的值 绑定html属性值和数据-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="../node_modules/vue/dist/vue.js">
+
+</script>
+<style>
+    .active{
+        color: blue;
+    }
+    .c1{
+        color: red;
+    }
+    .font{
+        font-size:17px;
+    }
+</style>
+<body>
+<div id="app">
+    <!--class选择器-->
+    <input type="button"  v-bind:class="{active: isActive }" value="v-bind"/> <br/>
+    <!--class选择器-->
+    输入库存<input type="text"  class="c1" v-model="count"/>  <br/>
+    <input type="button"  v-bind:class="{c1: count > 0 }" class="font" value="加入购物车"/> <br/>
+</div>
+</body>
+</html>
+<script>
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+            isActive:true,
+            // 库存
+            count:0
+        }
+    });
+</script>
