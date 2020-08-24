@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../node_modules/vue/dist/vue.js">
+
+    </script>
+</head>
+<body>
+<div id="app">
+    // 语法：v-on:事件名="js片段或函数名"
+    <br/>
+    <button v-on:click="num++">增加</button><br/>
+    <!--右击事件，并阻止默认事件发生-->
+    <button v-on:contextmenu.prevent="num++">增加一个.鼠标右击生效</button>
+    <button v-on:click="decrement()">减少</button>
+    <h1>捡到 $：{{num}}</h1>
+    <input type="submit" @keyup.enter="submit()">
+</div>
+</body>
+<script>
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+           num:100
+        },
+        methods:{
+            decrement(){
+                this.num--;
+            },
+            submit(){
+                console.log("提交。。。");
+            }
+        }
+    });
+</script>
+</html>
