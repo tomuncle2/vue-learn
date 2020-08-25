@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="node_modules/vue/dist/vue.js">
+</script>
+<script src="component/login.js">
+</script>
+<script src="component/register.js">
+</script>
+<script src="node_modules/vue-router/dist/vue-router.js">
+</script>
+<body>
+<div id ="app">
+    <!--router-link来指定跳转的路径-->
+    <span><router-link to="/login">登录</router-link></span>
+    <span><router-link to="/register">注册</router-link></span>
+
+    <div>
+        <!--vue-router的锚点-->
+        <router-view></router-view>
+    </div>
+    <!--<login-component></login-component>-->
+
+    <!--<register-component></register-component>-->
+</div>
+</body>
+</html>
+
+<script>
+    // 只能叫router
+    const router = new VueRouter({
+        routes:[
+            {
+                // 路由规则 请求路径，以“/”开头
+                path: "/login",
+                // 组件名称
+                component:loginComponent
+            },
+            {
+                // 路由规则 请求路径，以“/”开头
+                path: "/register",
+                // 组件名称
+                component:registerComponent
+            }
+        ]
+    })
+
+    const vueApp = new Vue({
+        // 选择器 el即element，该vue实例要渲染的页面元素
+        el:"#app",
+        // 声明了el和data后model和view就被自动关联起来了（双向）
+        data:{
+            // model(数据)
+            name:"迪哥x",
+            num: 10
+        },
+        components:{
+            // key和value相同可以简写
+            loginComponent,
+            registerComponent
+        },
+        router
+    });
+</script>
