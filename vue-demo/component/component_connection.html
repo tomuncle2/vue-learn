@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--组件间通信-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../node_modules/vue/dist/vue.js">
+</script>
+
+<body>
+<div id="app">
+    你的赚钱目标 $：<input type="text" v-model="targetmoney"/><br/>
+    <!--全局父组件  每个组件-->
+    <customecomponent v-bind:targetmoney="targetmoney" @set-target="setTarget">4545</customecomponent><br/>
+    <customecomponent v-bind:targetmoney="targetmoney" @set-target="setTarget">35</customecomponent><br/>
+
+    <!--局部组件-->
+    <howggetmoney v-bind:targetmoney="targetmoney"  @set-target="setTarget"></howggetmoney>
+
+
+</div>
+</body>
+
+</html>
+<script>
+    // 全局组件  组件名要小写 因为html模板不区分大小写
+    Vue.component("customecomponent",{
+        // 全局组件()
+        template:'<button v-on:click="money++">点击赚钱+,你赚了{{money}}$, 你的目标：{{targetmoney}}</button><br/>' +
+            '<button v-on:click="changetarget">调整你的目标：{{targetmoney}}</button>',
+        // 返回值是函数，所以每个组件实例的数据可以彼此隔离，互不影响。
+        data() {
+            return {
+                 money:0
+            }
+        },
+        // 接收父传递过来参数
+        props:[
+            'targetmoney'
+        ],
+        methods:{
+            changetarget(money){
+                this.$emit("set-target",money);
+            }
+        }
+    })
+
+    // 局部组件
+    const howgGetmoney = {
+        template:'<button v-on:click="isRich = !isRich">点击占卜，你是否会成为有钱人  <br/>{{isRich}}, 你的目标：{{targetmoney}}</button>',
+        // 返回值是函数，所以每个组件实例的数据可以彼此隔离，互不影响。
+        data() {
+            return {
+                isRich:true,
+            }
+        },
+        props: ['targetmoney']
+    }
+
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+            targetmoney:0,
+        },
+        components:{
+            howggetmoney:howgGetmoney
+        },
+        methods:{
+            setTarget(money){
+              this.targetmoney = money;
+            },
+            plus(){
+                this.targetmoney++ ;
+            },
+            reduce(){
+                this.targetmoney--
+            }
+
+        }
+    })
+</script>

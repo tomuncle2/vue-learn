@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--组件化-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../node_modules/vue/dist/vue.js">
+</script>
+<!--返回标签要写完整 有bug-->
+<script src="overall_situation_component.js">
+</script>
+<body>
+<div id="app">
+    <!--全局父组件  每个组件-->
+    <customecomponent>4545</customecomponent><br/>
+    <customecomponent>35</customecomponent><br/>
+
+    <customecomponent>454345</customecomponent><br/>
+    <getmoneycomponent>getMoney</getmoneycomponent><br/>
+    <!--局部组件-->
+    <howgetmoney>454345</howgetmoney><br/>
+
+
+</div>
+</body>
+</html>
+<script>
+    // 全局组件  组件名要小写 因为html模板不区分大小写
+    Vue.component("customecomponent",{
+        // 全局组件()
+        template:'<button v-on:click="money++">点击赚钱+,你赚了{{money}}$</button>',
+        // 返回值是函数，所以每个组件实例的数据可以彼此隔离，互不影响。
+        data() {
+            return {
+                 money:0,
+            }
+        }
+    })
+
+    // 局部组件
+    const howgGetmoney = {
+            template:'<button v-on:click="isRich = !isRich">点击占卜，你是否会成为有钱人  <br/>{{isRich}}</button>',
+            // 返回值是函数，所以每个组件实例的数据可以彼此隔离，互不影响。
+            data() {
+                return {
+                    isRich:true,
+                }
+            }
+    }
+
+    // 插值表达式：花括号 差值闪烁
+    const vues = new Vue({
+        el:"#app",
+        data:{
+            isActive:true,
+            // 库存
+            count:0
+        },
+         // 就是当前vue对象子组件集合 - 其key就是子组件名称
+         // 其值就是组件对象名
+        components: {
+            howgetmoney: howgGetmoney
+        }
+    })
+</script>
